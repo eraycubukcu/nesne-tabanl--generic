@@ -1,0 +1,55 @@
+@startuml
+title Generic
+
+package Abstracts
+{
+    interface IHeap<T>
+    {
+        +count:int
+        +add(item:T)
+        +extract():T
+    }
+}
+interface IComparable<T>
+{
+
+}
+package Heaps
+{
+    abstract class Heap
+    {
+        -_innerList:List<T>
+        +count:int
+        +add(item:T)
+        +{abstract}extract():T
+    }
+    class MinHeap
+    {
+        +extract():T
+    }
+
+    class MaxHeap
+    {
+        +extract():T
+    }
+    
+}
+
+package Entities
+{
+    class Product
+    {
+        +id:int
+        +string:name
+        +decimal:price
+    }
+}
+
+Heap .up.|> IHeap : "<<implements>>"
+MinHeap .up.|> Heap : "<<extends>>"
+MaxHeap .up.|> Heap : "<<extends>>"
+Product .up.|> IComparable : "<<implements>>"
+IHeap .up.|> IComparable : "<<implements>>"
+
+hide empty members
+@enduml
